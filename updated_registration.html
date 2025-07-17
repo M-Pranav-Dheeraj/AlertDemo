@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Registration Page</title>
+<link href="styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="container">
+<h2>Registration Form</h2>
+<form name="regForm" onsubmit="return validateForm(event);">
+<label for="name">Enter Your Name:</label>
+<input id="name" name="name" placeholder="Your Name" type="text"/>
+<label for="address">Personal Address:</label>
+<input id="address" name="address" placeholder="Personal Address" type="text"/>
+<label>Gender:</label>
+<input name="gender" type="radio" value="male"/> Male
+            <input name="gender" type="radio" value="female"/> Female
+
+            <label>Hobby:</label>
+<input name="hobby" type="checkbox" value="reading"/> Reading
+            <input name="hobby" type="checkbox" value="traveling"/> Traveling
+			<input name="hobby" type="checkbox" value="singing"/> Singing
+
+            <label for="city">City:</label>
+<select id="city" name="city">
+<option>Select</option>
+<option>Pune</option>
+<option>Mumbai</option>
+<option>Delhi</option>
+<option>Hyderbad</option>
+<option>Newyork</option>
+<option>Chicago</option>
+</select>
+<label for="country">Country:</label>
+<select id="country" name="country">
+<option>Select</option>
+<option>India</option>
+<option>USA</option>
+<option>UK</option>
+</select>
+<label for="dob">Date of Birth:</label>
+<input name="dob" type="date"/>
+<input type="submit" value="Submit"/>
+</form>
+<br/><br/>
+<a href="index.html">Back to Alert Page</a>
+</div>
+<script>
+        function scrollToBottom() {
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function submitForm() {
+            alert("Submission Successful!");
+            return false;
+        }
+    </script>
+<script>
+function validateForm(event) {
+    event.preventDefault();
+    var name = document.forms["regForm"]["name"].value.trim();
+    var address = document.forms["regForm"]["address"].value.trim();
+    var gender = document.forms["regForm"]["gender"];
+    var hobby = document.forms["regForm"]["hobby"];
+    var city = document.querySelector("#city"); 
+    var country = document.querySelector("#country");
+    var dob = document.forms["regForm"]["dob"].value;
+
+    if (name === "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    if (address === "") {
+        alert("Address must be filled out");
+        return false;
+    }
+
+    var genderSelected = false;
+    for (var i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+            genderSelected = true;
+            break;
+        }
+    }
+    if (!genderSelected) {
+        alert("Please select a gender");
+        return false;
+    }
+
+    var hobbySelected = false;
+    for (var i = 0; i < hobby.length; i++) {
+        if (hobby[i].checked) {
+            hobbySelected = true;
+            break;
+        }
+    }
+    if (!hobbySelected) {
+        alert("Please select at least one hobby");
+        return false;
+    }
+	
+	if(city.value==="Select"){
+		alert("Please Select City!");
+		return false;
+	}
+
+	if(country.value==="Select"){
+		alert("Please enter country!");
+		return;
+	}
+    
+    if (dob === "") {
+        alert("Please enter your date of birth");
+        return false;
+    }
+
+    alert("Submission Successful!");
+    return true;
+}
+</script></body>
+</html>
